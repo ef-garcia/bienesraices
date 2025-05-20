@@ -1,9 +1,10 @@
 import express from 'express';
-
+import usuarioRoutes from './routes/usuario.routes.js';
 
 
 const server = express();
 
+server.use('/', usuarioRoutes);
 
 const port = 3000;
 
