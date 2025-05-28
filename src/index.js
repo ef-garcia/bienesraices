@@ -7,6 +7,8 @@ const server = express();
 server.set('view engine', 'pug');
 server.set('views', './src/views');
 
+server.use(express.static('src/public'));
+
 server.use('/auth', usuarioRoutes);
 
 
