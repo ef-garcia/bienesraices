@@ -3,13 +3,19 @@
 
 const formularioLogin = (req, res) => {
     res.render('auth/login', {
-        autenticado: false
+        pagina: 'Iniciar Sesion'
     })
 }
 
 const formularioRegistro = (req, res) => {
     res.render('auth/registro', {
+        pagina: 'Crear Cuenta'
+    })
+}
 
+const formularioOlvidePassword = (req, res) => {
+    res.render('auth/recuperar-cuenta', {
+        pagina: 'Recupera tu Cuenta'
     })
 }
 
@@ -17,4 +23,5 @@ const formularioRegistro = (req, res) => {
 export {
     formularioLogin,
     formularioRegistro,
+    formularioOlvidePassword,
 }
