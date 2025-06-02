@@ -1,21 +1,18 @@
 import { Sequelize } from "sequelize";
+import env from "../environments/environments.js"
 
+const { 
+    HOST, 
+    PORT, 
+    USER, 
+    PASSWORD, 
+    NAME, 
+    DIALECT } = env.DB
 
-const db = new Sequelize('bienesraices_mvc', 'root', '', {
-    host: 'localhost',
-    port: 3306,
-    dialect: 'mysql',
-    define: {
-        timestamps: true
-    },
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    },
-    operatorsAliases: false
-});
+const db = new Sequelize(NAME, USER, PASSWORD, {
+    host: HOST,
+    port: PORT,
+    dialect: DIALECT
+})
 
-
-export default db;
+export default db

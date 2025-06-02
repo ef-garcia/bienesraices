@@ -1,17 +1,13 @@
 import express from 'express';
 import usuarioRoutes from './routes/usuario.routes.js';
-import db from './config/db.js';
+import connectionDB from './config/connectionDB.js';
+import env from './environments/environments.js'
 
 // Crear server
 const server = express();
 
 // Conexion a la base de datos
-try {
-    await db.authenticate();
-    console.log('Conexion correcta a la Base de Datos')
-} catch (error) {
-    console.log(error)
-}
+await connectionDB();
 
 // Habilitar Pug
 server.set('view engine', 'pug');
@@ -24,7 +20,7 @@ server.use(express.static('src/public'));
 server.use('/auth', usuarioRoutes);
 
 // Definir puerto y arrancar el proyecto1
-const port = 3000;
+const port = env.PORT;
 server.listen(port, ()=>{
     console.log(`El servidor esta corriendo en el puerto ${port}`)
 })
