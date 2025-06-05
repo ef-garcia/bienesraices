@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "dev": "node --env-file .env --watch src/index.js",
     "css": "tailwindcss -i src/public/css/tailwind.css -o src/public/css/app.css --watch"
   },
