@@ -16,8 +16,8 @@ const formularioRegistro = (req, res) => {
 
 const registrar = async (req, res) => {
     
-    const usuario = await Usuario.create(req.body);
-    res.json(usuario);
+    // const usuario = await Usuario.create(req.body);
+    // res.json(usuario);
     
 }
 

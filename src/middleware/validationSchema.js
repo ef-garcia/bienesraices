@@ -1,13 +1,16 @@
 import { validationResult } from "express-validator";
 
 
-const validateSchema = (req, res, next) => {
+const validateRegistroSchema = (req, res, next) => {
     const errors = validationResult(req);
     if( !errors.isEmpty() ) {
-        return res.status(400).json({ error: errors.array() });
+        return res.render('auth/registro', {
+            pagina: 'Crear Cuenta',
+            errores: errors.array()
+        })
     }
     next();
 }
 
 
-export default validateSchema;
+export default validateRegistroSchema;
