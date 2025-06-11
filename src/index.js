@@ -6,6 +6,9 @@ import env from './environments/environments.js'
 // Crear server
 const server = express();
 
+// Habilitar lectura de datos de formularios
+server.use( express.urlencoded({ extends: true }))
+
 // Conexion a la base de datos
 await connectionDB();
 
