@@ -6,7 +6,11 @@ const validateRegistroSchema = (req, res, next) => {
     if( !errors.isEmpty() ) {
         return res.render('auth/registro', {
             pagina: 'Crear Cuenta',
-            errores: errors.array()
+            errores: errors.array(),
+            usuario: {
+                nombre: req.body.nombre,
+                email: req.body.email,
+            }
         })
     }
     next();
