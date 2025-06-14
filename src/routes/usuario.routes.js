@@ -1,6 +1,6 @@
 import express from 'express';
-import usuarioSchema from '../schemas/usuario.schema.js';
-import validateRegistroSchema from '../middleware/validationSchema.js';
+// import usuarioSchema from '../schemas/usuario.schema.js';
+// import validateRegistroSchema from '../middleware/validationSchema.js';
 import { 
     formularioLogin, 
     formularioRegistro,
@@ -13,7 +13,8 @@ const router = express.Router();
 router.get('/login', formularioLogin);
 
 router.get('/registro', formularioRegistro);
-router.post('/registro', usuarioSchema, validateRegistroSchema, registrar);
+
+router.post('/registro', registrar);
 
 router.get('/recuperar-cuenta', formularioOlvidePassword);
 
