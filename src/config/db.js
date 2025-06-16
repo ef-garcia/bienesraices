@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import env from "../environments/environments.js"
+import env from "../environments/environments.js";
 
 const { 
     HOST, 
