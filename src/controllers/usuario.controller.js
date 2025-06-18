@@ -36,7 +36,7 @@ const registrar = async (req, res) => {
         .equals(contrasenia).withMessage('Las contraseñas no son iguales')
         .run(req)
 
-    let resultado = validationResult(req)
+    let resultado = validationResult(req);
     
     // Verificar que el resultado este vacio, para que no cargue a la base de datos
     if( !resultado.isEmpty() ) {
@@ -120,14 +120,35 @@ const confirmar = async (req, res) => {
         mensaje: 'La cuenta se confirmo correctamente',
         error: false
     })
-    
 
 }
 
 const formularioOlvidePassword = (req, res) => {
     res.render('auth/recuperar-cuenta', {
-        pagina: 'Recupera tu Cuenta'
+        pagina: 'Recupera tu Cuenta',
+        csrfToken: req.csrfToken(),
     })
+}
+
+const resetPassword = async (req, res) => {
+    // Validacion
+    await check('email')
+        .isEmail().withMessage('El email es obligatorio')
+        .run(req)
+    
+    let resultado = validationResult( req );
+
+    // Verificar que el resultado este vacio
+    if( !resultado.isEmpty() ) {
+        return res.render('auth/recuperar-cuenta', {
+            pagina: 'Recupera tu Cuenta',
+            csrfToken: req.csrfToken(),
+            errores: resultado.array()
+        })
+    }
+
+    // Buscar el usuario
+
 }
 
 
@@ -137,4 +158,5 @@ export {
     registrar,
     confirmar,
     formularioOlvidePassword,
+    resetPassword
 }
