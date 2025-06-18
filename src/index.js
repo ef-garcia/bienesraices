@@ -1,4 +1,6 @@
 import express from 'express';
+import csrf from 'csurf';
+import cookieParser from 'cookie-parser';
 import usuarioRoutes from './routes/usuario.routes.js';
 import connectionDB from './config/connectionDB.js';
 import env from './environments/environments.js'
@@ -7,7 +9,14 @@ import env from './environments/environments.js'
 const server = express();
 
 // Habilitar lectura de datos de formularios
-server.use( express.urlencoded({ extends: true }))
+server.use( express.urlencoded({ extends: true }));
+
+
+//Habilitar Cookie Parser
+server.use( cookieParser() );
+
+// Habilitar CSRF
+server.use( csrf({ cookie: true }) );
 
 // Conexion a la base de datos
 await connectionDB();
@@ -26,4 +35,4 @@ server.use('/auth', usuarioRoutes);
 const port = env.PORT;
 server.listen(port, ()=>{
     console.log(`El servidor esta corriendo en el puerto ${port}`)
-})
+});
