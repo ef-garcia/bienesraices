@@ -1,5 +1,4 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import csrf from 'csurf';
 import cookieParser from 'cookie-parser';
 import usuarioRoutes from './routes/usuario.routes.js';
@@ -9,8 +8,6 @@ import env from './environments/environments.js'
 // Crear server
 const server = express();
 
-// Dotenv
-dotenv.config();
 
 // Habilitar lectura de datos de formularios
 server.use( express.urlencoded({ extends: true }));
