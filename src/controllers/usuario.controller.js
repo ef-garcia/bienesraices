@@ -148,6 +148,19 @@ const resetPassword = async (req, res) => {
     }
 
     // Buscar el usuario
+    const { email } = req.body;
+
+    const usuario = await Usuario.findOne({ where: { email }});
+    
+    if( !usuario ) {
+        return res.render('auth/recuperar-cuenta', {
+            pagina: 'Recupera tu cuenta',
+            csrfToken: req.csrfToken(),
+            errores: [{ msg: 'El email no pertenece a ningun usuario' }]
+        })
+    }
+
+    // Generar un token y enviar el email
 
 }
 
