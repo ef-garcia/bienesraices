@@ -161,7 +161,15 @@ const resetPassword = async (req, res) => {
     }
 
     // Generar un token y enviar el email
+    usuario.token = generarId();
+    await usuario.save();
 
+    // Enviar un email
+
+
+    // Renderizar un mensaje
+
+    
 }
 
 
