@@ -118,7 +118,6 @@ const confirmar = async (req, res) => {
     res.render("auth/confirmar-cuenta", {
         pagina: 'Cuenta Confirmada',
         mensaje: 'La cuenta se confirmo correctamente',
-        error: false
     })
 
 }
@@ -179,12 +178,31 @@ const resetPassword = async (req, res) => {
 
 }
 
-const comprobarToken = (req, res, next) => {
-    next()
+const comprobarToken = async (req, res) => {
+    const { token } = req.params;
+
+    const usuario =  await Usuario.findOne({ where: { token }});
+ 
+    if( !usuario ) {
+        return res.render('auth/confirmar-cuenta', {
+            pagina: 'Restablece  tu contraseña',
+            mensaje: 'Hubo un error al validar tu informacion, intenta de nuevo.',
+            error: true
+        })
+    }
+
+    // Mostrar formulario para modificar el password
+    res.render('auth/reset-password', {
+        pagina: 'Restablece tu password',
+        csrfToken: req.csrfToken()
+    })
+
+
 }
 
 const nuevoPassword = (req, res) => {
-
+    console.log('Guardando password');
+    
 }
 
 export {
