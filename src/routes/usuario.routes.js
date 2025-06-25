@@ -12,6 +12,7 @@ import {
 
 } from '../controllers/usuario.controller.js';
 
+
 const router = express.Router();
 
 router.get('/login', formularioLogin);
